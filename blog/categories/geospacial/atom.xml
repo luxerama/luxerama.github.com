@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Geospacial | The Odd Ramble]]></title>
+  <link href="http://luxerama.github.com/blog/categories/geospacial/atom.xml" rel="self"/>
+  <link href="http://luxerama.github.com/"/>
+  <updated>2012-11-14T12:51:51+00:00</updated>
+  <id>http://luxerama.github.com/</id>
+  <author>
+    <name><![CDATA[Vincent Siebert]]></name>
+    <email><![CDATA[vincent@siebert.im]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[getting a document's distance using mongoid and moped]]></title>
+    <link href="http://luxerama.github.com/blog/2012/11/14/getting-a-documents-distance-using-mongoid-and-moped/"/>
+    <updated>2012-11-14T12:02:00+00:00</updated>
+    <id>http://luxerama.github.com/blog/2012/11/14/getting-a-documents-distance-using-mongoid-and-moped</id>
+    <content type="html"><![CDATA[<h2>What am I trying to do?</h2>
+
+<p>I am currently working on a project that requires the retrieval of geospacial documents from a collection. Each time I retrive documents I also need to include the distance in the resultset. Furthermore I need to be able to paginate through the documents.</p>
+
+<h2>Problems</h2>
+
+<p>There were two issues I had to address. The first one was related to Mongoid directly, however the second one is a little more tricky as I need to use MongoDB functionality that has yet to be implemented thus I needed to implement a workaround rather than a straight fix.</p>
+
+<h3>Mongoid does not return the distance when using <code>Model.near</code></h3>
+
+<p>So far I have been unable to find a way to return the distnace with Mongoid's near wrapper. Because of this limitation I am forced to query directly through <a href="http://mongoid.org/en/moped/">Moped</a>.
+After reading around, the easiest way to send queries directly through Moped was outlined in this Gist:
+<div><script src='https://gist.github.com/488000.js?file='></script>
+<noscript><pre><code>require 'mongoid'
+require 'rspec'
+
+Mongoid.configure do |config|
+  config.master = Mongo::Connection.new.db('testing')
+  config.autocreate_indexes = true
+end
+
+class User
+  include Mongoid::Document
+  field :latlng, :type =&gt; Array
+
+  collection.remove
+  index [[:latlng, Mongo::GEO2D]]
+end
+
+context &quot;geo queries&quot; do
+  let!(:closest) { User.create(:latlng =&gt; [50, 50]) }
+  let!(:middle) { User.create(:latlng =&gt; [55, 55]) }
+  let!(:farthest) { User.create(:latlng =&gt; [60, 60]) }
+
+  after { User.delete_all }
+
+  context &quot;$center&quot; do
+    subject { User.where(:latlng.within =&gt; {&quot;$center&quot; =&gt; [[50, 50], 10]}).entries }
+
+    it &quot;should filted users outside the radius&quot; do
+      subject.size.should == 2
+    end
+
+    it &quot;should return in order of distance&quot; do
+      subject[0].should == closest
+      subject[1].should == middle
+    end
+  end
+
+  context &quot;dbNear&quot; do
+    let(:query) do
+      BSON::OrderedHash.new.tap do |query|
+        query[&quot;geoNear&quot;] = &quot;users&quot;
+        query[&quot;near&quot;] = [50, 50]  # lat / long
+        query[&quot;num&quot;] = 2          # max results
+      end
+    end
+
+    subject { User.collection.db.command(query) }
+
+    it &quot;should filter users outside the center and max size&quot; do
+      subject[&quot;results&quot;].size.should == 2
+    end
+
+    it &quot;should return in order of distance&quot; do
+      subject[&quot;results&quot;][0][&quot;obj&quot;][&quot;_id&quot;].should == closest.id
+      subject[&quot;results&quot;][1][&quot;obj&quot;][&quot;_id&quot;].should == middle.id
+    end
+
+    it &quot;should include the distance&quot; do
+      subject[&quot;results&quot;][0][&quot;dis&quot;].should == 0
+      subject[&quot;results&quot;][1][&quot;dis&quot;].should be_close(7, 1)
+    end
+
+    it &quot;should be convertible into mongoid documents&quot; do
+      subject[&quot;results&quot;].map do |result|
+        Mongoid::Factory.build(User, result[&quot;obj&quot;])
+      end.should == [closest, middle]
+    end
+  end
+
+end
+</code></pre></noscript></div>
+
+which accompanied this <a href="https://github.com/mongoid/mongoid/issues/139">Github issue</a></p>
+
+<p>From that we can work out that the following will work in Mongoid:
+<div><script src='https://gist.github.com/4071837.js?file='></script>
+<noscript><pre><code># This works as of Mongoid v3
+Model.collection.database.command(geoNear: &quot;venues&quot;, near: [50, 50])</code></pre></noscript></div>
+</p>
+
+<h3>MongoDB is missing a .skip() equivalent for $geoNear</h3>
+
+<p>In this section I will shortly discuss the workarounds I had to deploy in order to get pagination working.</p>
+]]></content>
+  </entry>
+  
+</feed>

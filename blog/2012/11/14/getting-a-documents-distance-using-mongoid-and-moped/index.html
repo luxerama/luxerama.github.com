@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>The Odd Ramble</title>
+  <title>getting a document's distance using mongoid and moped - The Odd Ramble</title>
   <meta name="author" content="Vincent Siebert">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://luxerama.github.com/">
+  <link rel="canonical" href="http://luxerama.github.com/blog/2012/11/14/getting-a-documents-distance-using-mongoid-and-moped/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -62,15 +62,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/11/14/getting-a-documents-distance-using-mongoid-and-moped/">Getting a Document&#8217;s Distance Using Mongoid and Moped</a></h1>
+      <h1 class="entry-title">Getting a Document's Distance Using Mongoid and Moped</h1>
     
     
       <p class="meta">
@@ -93,7 +90,7 @@
   </header>
 
 
-  <div class="entry-content"><h2>What am I trying to do?</h2>
+<div class="entry-content"><h2>What am I trying to do?</h2>
 
 <p>I am currently working on a project that requires the retrieval of geospacial documents from a collection. Each time I retrive documents I also need to include the distance in the resultset. Furthermore I need to be able to paginate through the documents.</p>
 
@@ -192,22 +189,16 @@ Model.collection.database.command(geoNear: &quot;venues&quot;, near: [50, 50])</
 
 <p>In this section I will shortly discuss the workarounds I had to deploy in order to get pagination working.</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/16/homebrew-memcache-without-the-d/">Homebrew: Memcache Without the D</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Vincent Siebert</span></span>
+
+      
 
 
 
@@ -219,38 +210,44 @@ Model.collection.database.command(geoNear: &quot;venues&quot;, near: [50, 50])</
   
 
 
-<time datetime="2012-08-16T21:06:00+01:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
-        
-      </p>
+<time datetime="2012-11-14T12:02:00+00:00" pubdate data-updated="true">Nov 14<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/geospacial/'>Geospacial</a>, <a class='category' href='/blog/categories/mongodb/'>MongoDB</a>, <a class='category' href='/blog/categories/mongoid/'>Mongoid</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><h2>What is it?</h2>
-
-<p>Memcache is a memcached client from <a href="http://pecl.php.net/package/memcache">PECL</a></p>
-
-<h2>Why am I even doing this?</h2>
-
-<p>Unfortuantely at my current job we are still running some legacy systems that are still relying on fairly old school packages for their day-to-day runnings.
-Because I am sick of having to dig up the manual on how to compile memcache everytime I build a development machine I thought I make mylife a little easier and automate the compile via brew.</p>
-
-<h2>Where is it?</h2>
-
-<p>I am hosting my own brew <a href="https://github.com/luxerama/homebrew-weizen">repository</a> and you can tap it (if you are running at least brew v0.9) with <code>brew tap luxerama/weizen</code>, then just install it with <code>brew install memcache</code>.</p>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://luxerama.github.com/blog/2012/11/14/getting-a-documents-distance-using-mongoid-and-moped/" data-via="luxerama" data-counturl="http://luxerama.github.com/blog/2012/11/14/getting-a-documents-distance-using-mongoid-and-moped/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/08/16/homebrew-memcache-without-the-d/" title="Previous Post: Homebrew: memcache without the D">&laquo; Homebrew: memcache without the D</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -258,7 +255,7 @@ Because I am sick of having to dig up the manual on how to compile memcache ever
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/11/14/getting-a-documents-distance-using-mongoid-and-moped/">getting a document&#8217;s distance using mongoid and moped</a>
+        <a href="/blog/2012/11/14/getting-a-documents-distance-using-mongoid-and-moped/">getting a document's distance using mongoid and moped</a>
       </li>
     
       <li class="post">
@@ -271,7 +268,7 @@ Because I am sick of having to dig up the manual on how to compile memcache ever
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/luxerama">@luxerama</a> on GitHub
@@ -301,7 +298,7 @@ Because I am sick of having to dig up the manual on how to compile memcache ever
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -330,6 +327,7 @@ Because I am sick of having to dig up the manual on how to compile memcache ever
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -344,7 +342,10 @@ Because I am sick of having to dig up the manual on how to compile memcache ever
       var disqus_shortname = 'coding-stories';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://luxerama.github.com/blog/2012/11/14/getting-a-documents-distance-using-mongoid-and-moped/';
+        var disqus_url = 'http://luxerama.github.com/blog/2012/11/14/getting-a-documents-distance-using-mongoid-and-moped/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
