@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Homebrew | The Odd Ramble]]></title>
+  <link href="http://luxerama.github.com/blog/categories/homebrew/atom.xml" rel="self"/>
+  <link href="http://luxerama.github.com/"/>
+  <updated>2012-11-14T12:46:00+00:00</updated>
+  <id>http://luxerama.github.com/</id>
+  <author>
+    <name><![CDATA[Vincent Siebert]]></name>
+    <email><![CDATA[vincent@siebert.im]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Homebrew: memcache without the D]]></title>
+    <link href="http://luxerama.github.com/blog/2012/08/16/homebrew-memcache-without-the-d/"/>
+    <updated>2012-08-16T21:06:00+01:00</updated>
+    <id>http://luxerama.github.com/blog/2012/08/16/homebrew-memcache-without-the-d</id>
+    <content type="html"><![CDATA[<h2>What is it?</h2>
+
+<p>Memcache is a memcached client from <a href="http://pecl.php.net/package/memcache">PECL</a></p>
+
+<h2>Why am I even doing this?</h2>
+
+<p>Unfortuantely at my current job we are still running some legacy systems that are still relying on fairly old school packages for their day-to-day runnings.
+Because I am sick of having to dig up the manual on how to compile memcache everytime I build a development machine I thought I make mylife a little easier and automate the compile via brew.</p>
+
+<h2>Where is it?</h2>
+
+<p>I am hosting my own brew <a href="https://github.com/luxerama/homebrew-weizen">repository</a> and you can tap it (if you are running at least brew v0.9) with <code>brew tap luxerama/weizen</code>, then just install it with <code>brew install memcache</code>.</p>
+]]></content>
+  </entry>
+  
+</feed>
