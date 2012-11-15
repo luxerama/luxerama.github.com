@@ -4,7 +4,7 @@
   <title><![CDATA[The Odd Ramble]]></title>
   <link href="http://luxerama.github.com/atom.xml" rel="self"/>
   <link href="http://luxerama.github.com/"/>
-  <updated>2012-11-14T12:51:51+00:00</updated>
+  <updated>2012-11-15T12:45:37+00:00</updated>
   <id>http://luxerama.github.com/</id>
   <author>
     <name><![CDATA[Vincent Siebert]]></name>
@@ -20,7 +20,7 @@
     <id>http://luxerama.github.com/blog/2012/11/14/getting-a-documents-distance-using-mongoid-and-moped</id>
     <content type="html"><![CDATA[<h2>What am I trying to do?</h2>
 
-<p>I am currently working on a project that requires the retrieval of geospacial documents from a collection. Each time I retrive documents I also need to include the distance in the resultset. Furthermore I need to be able to paginate through the documents.</p>
+<p>I am currently working on a project that requires the retrieval of geospacial documents from a collection. Each time I retrieve documents I also need to include the distance in the result-set. Furthermore I need to be able to paginate through the documents.</p>
 
 <h2>Problems</h2>
 
@@ -28,7 +28,7 @@
 
 <h3>Mongoid does not return the distance when using <code>Model.near</code></h3>
 
-<p>So far I have been unable to find a way to return the distnace with Mongoid&#8217;s near wrapper. Because of this limitation I am forced to query directly through <a href="http://mongoid.org/en/moped/">Moped</a>.
+<p>So far I have been unable to find a way to return the distance with Mongoid&#8217;s near wrapper. Because of this limitation I am forced to query directly through <a href="http://mongoid.org/en/moped/">Moped</a>.
 After reading around, the easiest way to send queries directly through Moped was outlined in this Gist:</p>
 
 <div><script src='https://gist.github.com/488000.js?file='></script>
